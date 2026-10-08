@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="es-CO">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- Seguridad: solo se cargan archivos de este mismo sitio (y el chat de Susana). En WordPress esto va como cabecera del servidor (ver GUIA-ELEMENTOR.md). -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.emailjs.com https://api.hsforms.com; frame-src https://chatbot-susana-aim-tika.ai.studio; form-action 'self'; base-uri 'self'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Título del artículo con la palabra clave · AImátika</title>
+  <meta name="description" content="Resumen de una o dos frases: qué pregunta responde el artículo y para quién es.">
+  <meta name="robots" content="noindex">
+  <link rel="canonical" href="https://www.aimatika.com/blog/plantilla-articulo">
+  <meta name="theme-color" content="#0A0A0A">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:site_name" content="AImátika">
+  <meta property="og:title" content="Título del artículo con la palabra clave · AImátika">
+  <meta property="og:description" content="Resumen de una o dos frases: qué pregunta responde el artículo y para quién es.">
+  <meta property="og:image" content="https://www.aimatika.com/img/compartir.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="../fonts/inter-variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Título del artículo con la palabra clave",
+    "description": "Resumen de una o dos frases: qué pregunta responde el artículo y para quién es.",
+    "datePublished": "2026-10-07",
+    "inLanguage": "es-CO",
+    "author": {
+      "@type": "Organization",
+      "name": "Equipo AImátika"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "AImátika"
+    },
+    "mainEntityOfPage": "https://www.aimatika.com/blog/plantilla-articulo"
+  }
+  </script>
+  <link rel="stylesheet" href="../css/estilos.css">
+  <link rel="stylesheet" href="../css/diagnostico.css">
+  <script src="../js/main.js" defer></script>
+  <script src="../js/diagnostico.js" defer></script>
+</head>
+<body>
+
+<!-- PLANTILLA · No se publica. Al copiarla: cambiar title, description, canonical, JSON-LD, fecha y quitar noindex. Agregar la tarjeta en blog.html. -->
+
+
+<!-- ================================================================
+     BLOQUE GLOBAL · Iconos y elementos gráficos de marca
+     Asterisco y destello: elementos del manual de marca.
+     Demás iconos: Phosphor Icons (licencia MIT).
+     En Elementor: pegar una sola vez en la plantilla de Cabecera (widget HTML).
+     ================================================================ -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-asterisco" viewBox="0 0 100 100"><rect x="42" y="2" width="16" height="96"/><rect x="42" y="2" width="16" height="96" transform="rotate(60 50 50)"/><rect x="42" y="2" width="16" height="96" transform="rotate(120 50 50)"/></symbol>
+  <symbol id="i-destello" viewBox="0 0 100 100"><polygon points="50,0 54.02,37.64 79.39,9.55 60.52,42.36 97.55,34.55 63,50 97.55,65.45 60.52,57.64 79.39,90.45 54.02,62.36 50,100 45.98,62.36 20.61,90.45 39.48,57.64 2.45,65.45 37,50 2.45,34.55 39.48,42.36 20.61,9.55 45.98,37.64"/></symbol>
+  <symbol id="i-flecha" viewBox="0 0 256 256"><path d="M221.66,133.66l-72,72a8,8,0,0,1-11.32-11.32L196.69,136H40a8,8,0,0,1,0-16H196.69L138.34,61.66a8,8,0,0,1,11.32-11.32l72,72A8,8,0,0,1,221.66,133.66Z"/></symbol>
+  <symbol id="i-flecha-diag" viewBox="0 0 256 256"><path d="M200,64V168a8,8,0,0,1-16,0V83.31L69.66,197.66a8,8,0,0,1-11.32-11.32L172.69,72H88a8,8,0,0,1,0-16H192A8,8,0,0,1,200,64Z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 256 256"><path d="M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z"/></symbol>
+  <symbol id="i-stethoscope" viewBox="0 0 256 256"><path d="M220,160a12,12,0,1,1-12-12A12,12,0,0,1,220,160Zm-4.55,39.29A48.08,48.08,0,0,1,168,240H144a48.05,48.05,0,0,1-48-48V151.49A64,64,0,0,1,40,88V40a8,8,0,0,1,8-8H72a8,8,0,0,1,0,16H56V88a48,48,0,0,0,48.64,48c26.11-.34,47.36-22.25,47.36-48.83V48H136a8,8,0,0,1,0-16h24a8,8,0,0,1,8,8V87.17c0,32.84-24.53,60.29-56,64.31V192a32,32,0,0,0,32,32h24a32.06,32.06,0,0,0,31.22-25,40,40,0,1,1,16.23.27ZM232,160a24,24,0,1,0-24,24A24,24,0,0,0,232,160Z"/></symbol>
+  <symbol id="i-magnifying-glass" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"/></symbol>
+  <symbol id="i-map-trifold" viewBox="0 0 256 256"><path d="M228.92,49.69a8,8,0,0,0-6.86-1.45L160.93,63.52,99.58,32.84a8,8,0,0,0-5.52-.6l-64,16A8,8,0,0,0,24,56V200a8,8,0,0,0,9.94,7.76l61.13-15.28,61.35,30.68A8.15,8.15,0,0,0,160,224a8,8,0,0,0,1.94-.24l64-16A8,8,0,0,0,232,200V56A8,8,0,0,0,228.92,49.69ZM104,52.94l48,24V203.06l-48-24ZM40,62.25l48-12v127.5l-48,12Zm176,131.5-48,12V78.25l48-12Z"/></symbol>
+  <symbol id="i-handshake" viewBox="0 0 256 256"><path d="M254.3,107.91,228.78,56.85a16,16,0,0,0-21.47-7.15L182.44,62.13,130.05,48.27a8.14,8.14,0,0,0-4.1,0L73.56,62.13,48.69,49.7a16,16,0,0,0-21.47,7.15L1.7,107.9a16,16,0,0,0,7.15,21.47l27,13.51,55.49,39.63a8.06,8.06,0,0,0,2.71,1.25l64,16a8,8,0,0,0,7.6-2.1l55.07-55.08,26.42-13.21a16,16,0,0,0,7.15-21.46Zm-54.89,33.37L165,113.72a8,8,0,0,0-10.68.61C136.51,132.27,116.66,130,104,122L147.24,80h31.81l27.21,54.41ZM41.53,64,62,74.22,36.43,125.27,16,115.06Zm116,119.13L99.42,168.61l-49.2-35.14,28-56L128,64.28l9.8,2.59-45,43.68-.08.09a16,16,0,0,0,2.72,24.81c20.56,13.13,45.37,11,64.91-5L188,152.66Zm62-57.87-25.52-51L214.47,64,240,115.06Zm-87.75,92.67a8,8,0,0,1-7.75,6.06,8.13,8.13,0,0,1-1.95-.24L80.41,213.33a7.89,7.89,0,0,1-2.71-1.25L51.35,193.26a8,8,0,0,1,9.3-13l25.11,17.94L126,208.24A8,8,0,0,1,131.82,217.94Z"/></symbol>
+  <symbol id="i-strategy" viewBox="0 0 256 256"><path d="M76,152a36,36,0,1,0,36,36A36,36,0,0,0,76,152Zm0,56a20,20,0,1,1,20-20A20,20,0,0,1,76,208ZM42.34,106.34,56.69,92,42.34,77.66A8,8,0,0,1,53.66,66.34L68,80.69,82.34,66.34A8,8,0,0,1,93.66,77.66L79.31,92l14.35,14.34a8,8,0,0,1-11.32,11.32L68,103.31,53.66,117.66a8,8,0,0,1-11.32-11.32Zm187.32,96a8,8,0,0,1-11.32,11.32L204,199.31l-14.34,14.35a8,8,0,0,1-11.32-11.32L192.69,188l-14.35-14.34a8,8,0,0,1,11.32-11.32L204,176.69l14.34-14.35a8,8,0,0,1,11.32,11.32L215.31,188Zm-45.19-89.51c-6.18,22.33-25.32,41.63-46.53,46.93A8.13,8.13,0,0,1,136,160a8,8,0,0,1-1.93-15.76c15.63-3.91,30.35-18.91,35-35.68,3.19-11.5,3.22-29-14.71-46.9L152,59.31V80a8,8,0,0,1-16,0V40a8,8,0,0,1,8-8h40a8,8,0,0,1,0,16H163.31l2.35,2.34C183.9,68.59,190.58,90.78,184.47,112.83Z"/></symbol>
+  <symbol id="i-palette" viewBox="0 0 256 256"><path d="M200.77,53.89A103.27,103.27,0,0,0,128,24h-1.07A104,104,0,0,0,24,128c0,43,26.58,79.06,69.36,94.17A32,32,0,0,0,136,192a16,16,0,0,1,16-16h46.21a31.81,31.81,0,0,0,31.2-24.88,104.43,104.43,0,0,0,2.59-24A103.28,103.28,0,0,0,200.77,53.89Zm13,93.71A15.89,15.89,0,0,1,198.21,160H152a32,32,0,0,0-32,32,16,16,0,0,1-21.31,15.07C62.49,194.3,40,164,40,128a88,88,0,0,1,87.09-88h.9a88.35,88.35,0,0,1,88,87.25A88.86,88.86,0,0,1,213.81,147.6ZM140,76a12,12,0,1,1-12-12A12,12,0,0,1,140,76ZM96,100A12,12,0,1,1,84,88,12,12,0,0,1,96,100Zm0,56a12,12,0,1,1-12-12A12,12,0,0,1,96,156Zm88-56a12,12,0,1,1-12-12A12,12,0,0,1,184,100Z"/></symbol>
+  <symbol id="i-book-open" viewBox="0 0 256 256"><path d="M232,48H160a40,40,0,0,0-32,16A40,40,0,0,0,96,48H24a8,8,0,0,0-8,8V200a8,8,0,0,0,8,8H96a24,24,0,0,1,24,24,8,8,0,0,0,16,0,24,24,0,0,1,24-24h72a8,8,0,0,0,8-8V56A8,8,0,0,0,232,48ZM96,192H32V64H96a24,24,0,0,1,24,24V200A39.81,39.81,0,0,0,96,192Zm128,0H160a39.81,39.81,0,0,0-24,8V88a24,24,0,0,1,24-24h64Z"/></symbol>
+  <symbol id="i-devices" viewBox="0 0 256 256"><path d="M224,72H208V64a24,24,0,0,0-24-24H40A24,24,0,0,0,16,64v96a24,24,0,0,0,24,24H152v8a24,24,0,0,0,24,24h48a24,24,0,0,0,24-24V96A24,24,0,0,0,224,72ZM40,168a8,8,0,0,1-8-8V64a8,8,0,0,1,8-8H184a8,8,0,0,1,8,8v8H176a24,24,0,0,0-24,24v72Zm192,24a8,8,0,0,1-8,8H176a8,8,0,0,1-8-8V96a8,8,0,0,1,8-8h48a8,8,0,0,1,8,8Zm-96,16a8,8,0,0,1-8,8H88a8,8,0,0,1,0-16h40A8,8,0,0,1,136,208Zm80-96a8,8,0,0,1-8,8H192a8,8,0,0,1,0-16h16A8,8,0,0,1,216,112Z"/></symbol>
+  <symbol id="i-printer" viewBox="0 0 256 256"><path d="M214.67,72H200V40a8,8,0,0,0-8-8H64a8,8,0,0,0-8,8V72H41.33C27.36,72,16,82.77,16,96v80a8,8,0,0,0,8,8H56v32a8,8,0,0,0,8,8H192a8,8,0,0,0,8-8V184h32a8,8,0,0,0,8-8V96C240,82.77,228.64,72,214.67,72ZM72,48H184V72H72ZM184,208H72V160H184Zm40-40H200V152a8,8,0,0,0-8-8H64a8,8,0,0,0-8,8v16H32V96c0-4.41,4.19-8,9.33-8H214.67c5.14,0,9.33,3.59,9.33,8Zm-24-52a12,12,0,1,1-12-12A12,12,0,0,1,200,116Z"/></symbol>
+  <symbol id="i-paint-brush-broad" viewBox="0 0 256 256"><path d="M216,24H72A40,40,0,0,0,32,64v72a24,24,0,0,0,24,24h48l-7.89,46.67A8.42,8.42,0,0,0,96,208a32,32,0,0,0,64,0,8.42,8.42,0,0,0-.11-1.33L152,160h48a24,24,0,0,0,24-24V32A8,8,0,0,0,216,24ZM72,40H176V80a8,8,0,0,0,16,0V40h16v64H48V64A24,24,0,0,1,72,40ZM200,144H152a16,16,0,0,0-15.84,18.26l0,.2L144,208.6a16,16,0,0,1-32,0l7.8-46.14,0-.2A16,16,0,0,0,104,144H56a8,8,0,0,1-8-8V120H208v16A8,8,0,0,1,200,144Z"/></symbol>
+  <symbol id="i-google-logo" viewBox="0 0 256 256"><path d="M224,128a96,96,0,1,1-21.95-61.09,8,8,0,1,1-12.33,10.18A80,80,0,1,0,207.6,136H128a8,8,0,0,1,0-16h88A8,8,0,0,1,224,128Z"/></symbol>
+  <symbol id="i-chart-line-up" viewBox="0 0 256 256"><path d="M232,208a8,8,0,0,1-8,8H32a8,8,0,0,1-8-8V48a8,8,0,0,1,16,0V156.69l50.34-50.35a8,8,0,0,1,11.32,0L128,132.69,180.69,80H160a8,8,0,0,1,0-16h40a8,8,0,0,1,8,8v40a8,8,0,0,1-16,0V91.31l-58.34,58.35a8,8,0,0,1-11.32,0L96,123.31l-56,56V200H224A8,8,0,0,1,232,208Z"/></symbol>
+  <symbol id="i-wrench" viewBox="0 0 256 256"><path d="M226.76,69a8,8,0,0,0-12.84-2.88l-40.3,37.19-17.23-3.7-3.7-17.23,37.19-40.3A8,8,0,0,0,187,29.24,72,72,0,0,0,88,96,72.34,72.34,0,0,0,94,124.94L33.79,177c-.15.12-.29.26-.43.39a32,32,0,0,0,45.26,45.26c.13-.13.27-.28.39-.42L131.06,162A72,72,0,0,0,232,96,71.56,71.56,0,0,0,226.76,69ZM160,152a56.14,56.14,0,0,1-27.07-7,8,8,0,0,0-9.92,1.77L67.11,211.51a16,16,0,0,1-22.62-22.62L109.18,133a8,8,0,0,0,1.77-9.93,56,56,0,0,1,58.36-82.31l-31.2,33.81a8,8,0,0,0-1.94,7.1L141.83,108a8,8,0,0,0,6.14,6.14l26.35,5.66a8,8,0,0,0,7.1-1.94l33.81-31.2A56.06,56.06,0,0,1,160,152Z"/></symbol>
+  <symbol id="i-video-camera" viewBox="0 0 256 256"><path d="M251.77,73a8,8,0,0,0-8.21.39L208,97.05V72a16,16,0,0,0-16-16H32A16,16,0,0,0,16,72V184a16,16,0,0,0,16,16H192a16,16,0,0,0,16-16V159l35.56,23.71A8,8,0,0,0,248,184a8,8,0,0,0,8-8V80A8,8,0,0,0,251.77,73ZM192,184H32V72H192V184Zm48-22.95-32-21.33V116.28L240,95Z"/></symbol>
+  <symbol id="i-chats-circle" viewBox="0 0 256 256"><path d="M232.07,186.76a80,80,0,0,0-62.5-114.17A80,80,0,1,0,23.93,138.76l-7.27,24.71a16,16,0,0,0,19.87,19.87l24.71-7.27a80.39,80.39,0,0,0,25.18,7.35,80,80,0,0,0,108.34,40.65l24.71,7.27a16,16,0,0,0,19.87-19.86ZM62,159.5a8.28,8.28,0,0,0-2.26.32L32,168l8.17-27.76a8,8,0,0,0-.63-6,64,64,0,1,1,26.26,26.26A8,8,0,0,0,62,159.5Zm153.79,28.73L224,216l-27.76-8.17a8,8,0,0,0-6,.63,64.05,64.05,0,0,1-85.87-24.88A79.93,79.93,0,0,0,174.7,89.71a64,64,0,0,1,41.75,92.48A8,8,0,0,0,215.82,188.23Z"/></symbol>
+  <symbol id="i-megaphone" viewBox="0 0 256 256"><path d="M248,120a48.05,48.05,0,0,0-48-48H160.2c-2.91-.17-53.62-3.74-101.91-44.24A16,16,0,0,0,32,40V200a16,16,0,0,0,26.29,12.25c37.77-31.68,77-40.76,93.71-43.3v31.72A16,16,0,0,0,159.12,214l11,7.33A16,16,0,0,0,194.5,212l11.77-44.36A48.07,48.07,0,0,0,248,120ZM48,199.93V40h0c42.81,35.91,86.63,45,104,47.24v65.48C134.65,155,90.84,164.07,48,199.93Zm131,8,0,.11-11-7.33V168h21.6ZM200,152H168V88h32a32,32,0,1,1,0,64Z"/></symbol>
+  <symbol id="i-lightning" viewBox="0 0 256 256"><path d="M215.79,118.17a8,8,0,0,0-5-5.66L153.18,90.9l14.66-73.33a8,8,0,0,0-13.69-7l-112,120a8,8,0,0,0,3,13l57.63,21.61L88.16,238.43a8,8,0,0,0,13.69,7l112-120A8,8,0,0,0,215.79,118.17ZM109.37,214l10.47-52.38a8,8,0,0,0-5-9.06L62,132.71l84.62-90.66L136.16,94.43a8,8,0,0,0,5,9.06l52.8,19.8Z"/></symbol>
+  <symbol id="i-layout" viewBox="0 0 256 256"><path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,16V96H40V56ZM40,112H96v88H40Zm176,88H112V112H216v88Z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm64-88a8,8,0,0,1-8,8H128a8,8,0,0,1-8-8V72a8,8,0,0,1,16,0v48h48A8,8,0,0,1,192,128Z"/></symbol>
+  <symbol id="i-calendar-blank" viewBox="0 0 256 256"><path d="M208,32H184V24a8,8,0,0,0-16,0v8H88V24a8,8,0,0,0-16,0v8H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32ZM72,48v8a8,8,0,0,0,16,0V48h80v8a8,8,0,0,0,16,0V48h24V80H48V48ZM208,208H48V96H208V208Z"/></symbol>
+  <symbol id="i-user-circle" viewBox="0 0 256 256"><path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24ZM74.08,197.5a64,64,0,0,1,107.84,0,87.83,87.83,0,0,1-107.84,0ZM96,120a32,32,0,1,1,32,32A32,32,0,0,1,96,120Zm97.76,66.41a79.66,79.66,0,0,0-36.06-28.75,48,48,0,1,0-59.4,0,79.66,79.66,0,0,0-36.06,28.75,88,88,0,1,1,131.52,0Z"/></symbol>
+  <symbol id="i-whatsapp" viewBox="0 0 256 256"><path d="M187.58,144.84l-32-16a8,8,0,0,0-8,.5l-14.69,9.8a40.55,40.55,0,0,1-16-16l9.8-14.69a8,8,0,0,0,.5-8l-16-32A8,8,0,0,0,104,64a40,40,0,0,0-40,40,88.1,88.1,0,0,0,88,88,40,40,0,0,0,40-40A8,8,0,0,0,187.58,144.84ZM152,176a72.08,72.08,0,0,1-72-72A24,24,0,0,1,99.29,80.46l11.48,23L101,118a8,8,0,0,0-.73,7.51,56.47,56.47,0,0,0,30.15,30.15A8,8,0,0,0,138,155l14.61-9.74,23,11.48A24,24,0,0,1,152,176ZM128,24A104,104,0,0,0,36.18,176.88L24.83,210.93a16,16,0,0,0,20.24,20.24l34.05-11.35A104,104,0,1,0,128,24Zm0,192a87.87,87.87,0,0,1-44.06-11.81,8,8,0,0,0-6.54-.67L40,216,52.47,178.6a8,8,0,0,0-.66-6.54A88,88,0,1,1,128,216Z"/></symbol>
+  <symbol id="i-copiar" viewBox="0 0 256 256"><path d="M216,32H88a8,8,0,0,0-8,8V80H40a8,8,0,0,0-8,8V216a8,8,0,0,0,8,8H168a8,8,0,0,0,8-8V176h40a8,8,0,0,0,8-8V40A8,8,0,0,0,216,32ZM160,208H48V96H160Zm48-48H176V88a8,8,0,0,0-8-8H96V48H208Z"/></symbol>
+  <symbol id="i-cerrar" viewBox="0 0 256 256"><path d="M205.66,194.34a8,8,0,0,1-11.32,11.32L128,139.31,61.66,205.66a8,8,0,0,1-11.32-11.32L116.69,128,50.34,61.66A8,8,0,0,1,61.66,50.34L128,116.69l66.34-66.35a8,8,0,0,1,11.32,11.32L139.31,128Z"/></symbol>
+  <symbol id="i-correo" viewBox="0 0 256 256"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48ZM203.43,64,128,133.15,52.57,64ZM216,192H40V74.19l82.59,75.71a8,8,0,0,0,10.82,0L216,74.19V192Z"/></symbol>
+  <symbol id="i-telefono" viewBox="0 0 256 256"><path d="M222.37,158.46l-47.11-21.11-.13-.06a16,16,0,0,0-15.17,1.4,8.12,8.12,0,0,0-.75.56L134.87,160c-15.42-7.49-31.34-23.29-38.83-38.51l20.78-24.71c.2-.25.39-.5.57-.77a16,16,0,0,0,1.32-15.06l0-.12L97.54,33.64a16,16,0,0,0-16.62-9.52A56.26,56.26,0,0,0,32,80c0,79.4,64.6,144,144,144a56.26,56.26,0,0,0,55.88-48.92A16,16,0,0,0,222.37,158.46ZM176,208A128.14,128.14,0,0,1,48,80,40.2,40.2,0,0,1,82.87,40a.61.61,0,0,0,0,.12l21,47L83.2,111.86a6.13,6.13,0,0,0-.57.77,16,16,0,0,0-1,15.7c9.06,18.53,27.73,37.06,46.46,46.11a16,16,0,0,0,15.75-1.14,8.44,8.44,0,0,0,.74-.56L168.89,152l47,21.05h0s.08,0,.11,0A40.21,40.21,0,0,1,176,208Z"/></symbol>
+  <symbol id="i-ubicacion" viewBox="0 0 256 256"><path d="M128,64a40,40,0,1,0,40,40A40,40,0,0,0,128,64Zm0,64a24,24,0,1,1,24-24A24,24,0,0,1,128,128Zm0-112a88.1,88.1,0,0,0-88,88c0,31.4,14.51,64.68,42,96.25a254.19,254.19,0,0,0,41.45,38.3,8,8,0,0,0,9.18,0A254.19,254.19,0,0,0,174,200.25c27.45-31.57,42-64.85,42-96.25A88.1,88.1,0,0,0,128,16Zm0,206c-16.53-13-72-60.75-72-118a72,72,0,0,1,144,0C200,161.23,144.53,209,128,222Z"/></symbol>
+  <symbol id="i-ciclo" viewBox="0 0 256 256"><path d="M224,48V96a8,8,0,0,1-8,8H168a8,8,0,0,1,0-16h28.69L182.06,73.37a79.56,79.56,0,0,0-56.13-23.43h-.45A79.52,79.52,0,0,0,69.59,72.71,8,8,0,0,1,58.41,61.27a96,96,0,0,1,135,.79L208,76.69V48a8,8,0,0,1,16,0ZM186.41,183.29a80,80,0,0,1-112.47-.66L59.31,168H88a8,8,0,0,0,0-16H40a8,8,0,0,0-8,8v48a8,8,0,0,0,16,0V179.31l14.63,14.63A95.43,95.43,0,0,0,130,222.06h.53a95.36,95.36,0,0,0,67.07-27.33,8,8,0,0,0-11.18-11.44Z"/></symbol>
+  <symbol id="i-comillas" viewBox="0 0 256 256"><path d="M100,56H40A16,16,0,0,0,24,72v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,100,56Zm0,80H40V72h60ZM216,56H156a16,16,0,0,0-16,16v64a16,16,0,0,0,16,16h60v8a32,32,0,0,1-32,32,8,8,0,0,0,0,16,48.05,48.05,0,0,0,48-48V72A16,16,0,0,0,216,56Zm0,80H156V72h60Z"/></symbol>
+  <symbol id="i-externo" viewBox="0 0 256 256"><path d="M224,104a8,8,0,0,1-16,0V59.32l-66.33,66.34a8,8,0,0,1-11.32-11.32L196.68,48H152a8,8,0,0,1,0-16h64a8,8,0,0,1,8,8Zm-40,24a8,8,0,0,0-8,8v72H48V80h72a8,8,0,0,0,0-16H48A16,16,0,0,0,32,80V208a16,16,0,0,0,16,16H176a16,16,0,0,0,16-16V136A8,8,0,0,0,184,128Z"/></symbol>
+</svg>
+
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<div class="sr" id="anuncio" aria-live="polite"></div>
+
+<!-- ================================================================
+     BLOQUE GLOBAL · Menú
+     En Elementor: Theme Builder > Cabecera (aplicar a todo el sitio).
+     ================================================================ -->
+<header class="nav" data-nav>
+  <div class="contenedor nav__in">
+    <a class="logo-img" href="../index.html" aria-label="AImátika, ir al inicio"><img src="../img/logo-aimatika.webp" alt="AImátika" width="612" height="144" decoding="async"></a>
+    <nav class="nav__links" aria-label="Principal">
+      <a href="../servicios.html">Servicios</a>
+      <a href="../nosotros.html">Nosotros</a>
+      <a href="../trabajo.html">Nuestro trabajo</a>
+      <a href="../blog.html" aria-current="true">Blog</a>
+      <a href="../contacto.html">Contacto</a>
+    </nav>
+    <a class="btn btn--accion nav__cta" href="https://wa.me/573170402062?text=Hola%20AIm%C3%A1tika%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer"><svg aria-hidden="true" focusable="false"><use href="#i-whatsapp"/></svg> Escríbenos por WhatsApp</a>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="menu-movil" aria-label="Abrir menú"><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="menu-movil" id="menu-movil">
+  <nav aria-label="Menú del celular">
+    <a href="../index.html">Inicio</a>
+    <a href="../servicios.html">Servicios</a>
+    <a href="../nosotros.html">Nosotros</a>
+    <a href="../trabajo.html">Nuestro trabajo</a>
+    <a href="../blog.html" aria-current="true">Blog</a>
+    <a href="../contacto.html">Contacto</a>
+  </nav>
+  <div class="menu-movil__acciones">
+    <a class="btn btn--accion" href="https://wa.me/573170402062?text=Hola%20AIm%C3%A1tika%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer"><svg aria-hidden="true" focusable="false"><use href="#i-whatsapp"/></svg> Escríbenos por WhatsApp</a>
+  </div>
+</div>
+
+<main id="contenido">
+
+  <!-- ================================================================
+       BLOG · Artículo
+       PLANTILLA · Copiar este archivo y cambiarle el nombre (minúsculas y guiones).
+       Elementor: plantilla de Entrada única. Cabecera Aurora con título y datos,
+       índice a la izquierda (si es largo), texto en columna de lectura, relacionados y llamado.
+       ================================================================ -->
+  <section class="cabecera-pagina" aria-labelledby="pagina-titulo">
+    <div class="cabecera-pagina__fondo" aria-hidden="true">
+      <img src="../img/aurora-trabajo-1776.webp" srcset="../img/aurora-trabajo-900.webp 900w, ../img/aurora-trabajo-1776.webp 1776w" sizes="100vw" alt="" width="1776" height="896" fetchpriority="high" decoding="async">
+    </div>
+    <svg class="marca-grafica" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><use href="#i-asterisco"/></svg>
+    <div class="contenedor">
+      <h1 class="cabecera-pagina__titulo cabecera-pagina__titulo--frase" id="pagina-titulo"><span data-linea><span>Título del artículo con la palabra clave</span></span></h1>
+      <p class="lead">Resumen de una o dos frases: qué pregunta responde el artículo y para quién es.</p>
+      <ul class="articulo-meta">
+        <li><svg aria-hidden="true" focusable="false"><use href="#i-layout"/></svg><a href="../blog.html?categoria=estrategia">Estrategia</a></li>
+        <!-- FECHA · poner la fecha real de publicación -->
+        <li><svg aria-hidden="true" focusable="false"><use href="#i-calendar-blank"/></svg><time datetime="2026-10-07">7 de octubre de 2026</time></li>
+        <li><svg aria-hidden="true" focusable="false"><use href="#i-clock"/></svg>5 min de lectura</li>
+        <li><svg aria-hidden="true" focusable="false"><use href="#i-user-circle"/></svg>Equipo AImátika</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="seccion seccion--ajustada" aria-label="Artículo">
+    <div class="contenedor">
+      <div class="articulo-layout">
+        <nav class="toc" aria-labelledby="toc-titulo">
+          <h2 id="toc-titulo">En este artículo</h2>
+          <ol>
+            <li><a href="#primer-subtitulo">Primer subtítulo</a></li>
+            <li><a href="#segundo-subtitulo">Segundo subtítulo</a></li>
+            <li><a href="#tercer-subtitulo">Tercer subtítulo</a></li>
+            <li><a href="#cierre">Cierre</a></li>
+          </ol>
+        </nav>
+        <div class="articulo-cuerpo">
+<p>Primer párrafo: responde la pregunta de una vez y usa la palabra clave de forma natural.</p>
+<h2 id="primer-subtitulo">Primer subtítulo</h2>
+<p>Frases cortas, de tú, con ejemplos cotidianos. Sin estadísticas que no sean de conocimiento común.</p>
+<ul>
+  <li><strong>Idea corta.</strong> Una explicación breve.</li>
+  <li><strong>Otra idea corta.</strong> Una explicación breve.</li>
+</ul>
+<h2 id="segundo-subtitulo">Segundo subtítulo</h2>
+<p>Entre 900 y 1.300 palabras en total.</p>
+<h2 id="tercer-subtitulo">Tercer subtítulo</h2>
+<p>Si cuentas un caso, cifra o resultado, debe ser real y verificable.</p>
+<h2 id="cierre">Cierre</h2>
+<p>Cierra con un enlace al <a href="../servicios.html">servicio relacionado</a> y a <a href="../contacto.html#formulario">solicitar diagnóstico</a>.</p>
+        </div>
+      </div>
+
+      <section class="relacionados" aria-labelledby="relacionados-titulo">
+        <h2 id="relacionados-titulo">Artículos relacionados</h2>
+        <ul class="articulos" data-grupo>
+        <li data-categoria="estrategia">
+          <article class="articulo-card" data-aparecer>
+            <a href="../blog/como-aparecer-en-google-maps.html">
+              <div class="articulo-card__media"><img src="../img/aurora-trabajo-900.webp" alt="" width="900" height="454" loading="lazy" decoding="async"></div>
+              <div>
+                <p class="articulo-card__meta"><span class="articulo-card__cat">Estrategia</span><span>5 min de lectura</span></p>
+                <h3>Cómo aparecer en Google Maps con tu negocio</h3>
+                <p>Paso a paso para aparecer en Google Maps con tu Perfil de Empresa de Google (Google Business): crearlo, verificarlo, completarlo y mantenerlo al día.</p>
+                <span class="articulo-card__mas">Leer artículo <svg aria-hidden="true" focusable="false"><use href="#i-flecha"/></svg></span>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li data-categoria="estrategia">
+          <article class="articulo-card" data-aparecer>
+            <a href="../blog/como-elegir-agencia-de-marketing-digital-en-medellin.html">
+              <div class="articulo-card__media"><img src="../img/aurora-nosotros-900.webp" alt="" width="900" height="454" loading="lazy" decoding="async"></div>
+              <div>
+                <p class="articulo-card__meta"><span class="articulo-card__cat">Estrategia</span><span>5 min de lectura</span></p>
+                <h3>Cómo elegir una agencia de marketing digital en Medellín</h3>
+                <p>Qué preguntar, qué revisar y qué señales de alerta tener en cuenta para elegir una agencia de marketing digital en Medellín que de verdad te sirva.</p>
+                <span class="articulo-card__mas">Leer artículo <svg aria-hidden="true" focusable="false"><use href="#i-flecha"/></svg></span>
+              </div>
+            </a>
+          </article>
+        </li>
+        <li data-categoria="estrategia">
+          <article class="articulo-card" data-aparecer>
+            <a href="../blog/senales-de-que-el-marketing-de-tu-negocio-esta-regado.html">
+              <div class="articulo-card__media"><img src="../img/aurora-nosotros-900.webp" alt="" width="900" height="454" loading="lazy" decoding="async"></div>
+              <div>
+                <p class="articulo-card__meta"><span class="articulo-card__cat">Estrategia</span><span>1 min de lectura</span></p>
+                <h3>Señales de que el marketing de tu negocio está regado</h3>
+                <p>Publicas, pero cada cosa va por su lado. Estas señales te ayudan a ver si tu marketing necesita conexión y no más contenido.</p>
+                <span class="articulo-card__mas">Leer artículo <svg aria-hidden="true" focusable="false"><use href="#i-flecha"/></svg></span>
+              </div>
+            </a>
+          </article>
+        </li>
+        </ul>
+      </section>
+    </div>
+  </section>
+
+  <!-- SECCIÓN · Llamado a la acción -->
+  <section class="llamado" aria-labelledby="llamado-titulo">
+    <div class="llamado__fondo" aria-hidden="true">
+      <img src="../img/aurora-contacto-1776.webp" srcset="../img/aurora-contacto-900.webp 900w, ../img/aurora-contacto-1776.webp 1776w" sizes="100vw" alt="" width="1776" height="896" loading="lazy" decoding="async">
+    </div>
+    <div class="contenedor">
+      <h2 class="llamado__titulo" id="llamado-titulo"><span data-linea><span>Cuéntanos dónde está tu marca hoy</span></span></h2>
+      <p class="lead" data-aparecer>Te decimos por dónde empezar.</p>
+      <div class="acciones" data-aparecer>
+        <a class="btn btn--accion btn--grande" href="../contacto.html#formulario">Solicitar diagnóstico <svg class="i-flecha" aria-hidden="true" focusable="false"><use href="#i-flecha"/></svg></a>
+        <a class="btn btn--linea btn--grande" href="https://wa.me/573170402062?text=Hola%20AIm%C3%A1tika%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer"><svg aria-hidden="true" focusable="false"><use href="#i-whatsapp"/></svg> Escríbenos por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================================================================
+     BLOQUE GLOBAL · Pie de página
+     En Elementor: Theme Builder > Pie de página (aplicar a todo el sitio).
+     ================================================================ -->
+<footer class="pie">
+  <div class="contenedor">
+    <div class="pie__top">
+      <p class="pie__slogan">Hacemos crecer <span class="caja">tu marca</span></p>
+    </div>
+    <div class="pie__medio">
+      <div>
+        <p class="pie__titulo">Páginas</p>
+        <ul>
+          <li><a href="../index.html">Inicio</a></li>
+          <li><a href="../servicios.html">Servicios</a></li>
+          <li><a href="../nosotros.html">Nosotros</a></li>
+          <li><a href="../trabajo.html">Nuestro trabajo</a></li>
+          <li><a href="../blog.html">Blog</a></li>
+          <li><a href="../contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="pie__titulo">Servicios</p>
+        <ul>
+          <li><a href="../servicios/estrategia-digital.html">Estrategia Digital</a></li>
+          <li><a href="../servicios/identidad-de-marca.html">Identidad de marca</a></li>
+          <li><a href="../servicios/paginas-web.html">Páginas web</a></li>
+          <li><a href="../servicios/marketing-y-contenidos.html">Marketing y Contenidos</a></li>
+          <li><a href="../servicios/pauta-y-automatizacion.html">Pauta y Automatización</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="pie__titulo">Contacto</p>
+        <ul>
+          <li><a href="mailto:contacto@aimatika.com">contacto@aimatika.com</a></li>
+          <li><a href="https://wa.me/573170402062?text=Hola%20AIm%C3%A1tika%2C%20quiero%20solicitar%20un%20diagn%C3%B3stico." target="_blank" rel="noopener noreferrer">+57 317 040 2062</a></li>
+          <li>Medellín, Colombia</li>
+        </ul>
+      </div>
+      <div>
+        <p class="pie__titulo">AImátika</p>
+        <p>Marketing Estratégico &amp; IA. Diagnóstico, estrategia y automatización. Nada al azar.</p>
+        <ul class="pie__legal">
+          <li><a href="../privacidad.html">Política de tratamiento de datos</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pie__base">
+      <span>@AIMATIKA</span>
+      <span class="pie__copy">© <span data-anio>2026</span> AImátika. Todos los derechos reservados.</span>
+      <span>WWW.AIMATIKA.COM</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================================================================
+     BLOQUE GLOBAL · Susana (chat flotante)
+     En Elementor: widget HTML dentro de la plantilla de Pie de página.
+     ================================================================ -->
+<div class="susana" data-susana>
+  <button class="susana__boton" type="button" aria-expanded="false" aria-controls="susana-panel" aria-label="Hablar con Susana, te ayuda a encontrar por dónde empezar">
+    <span class="susana__avatar" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#i-destello"/></svg></span>
+    <span class="susana__texto"><strong>Susana</strong><span>Te ayudo a encontrar por dónde empezar</span></span>
+  </button>
+  <div class="susana__panel" id="susana-panel" role="dialog" aria-label="Chat con Susana">
+    <div class="susana__cabecera">
+      <span class="susana__avatar" aria-hidden="true"><svg viewBox="0 0 100 100"><use href="#i-destello"/></svg></span>
+      <div class="susana__info"><strong>Susana</strong><span>Asistente de AImátika</span></div>
+      <a class="icono-btn" href="https://chatbot-susana-aim-tika.ai.studio/?mode=chat" target="_blank" rel="noopener noreferrer" aria-label="Abrir a Susana en una pestaña nueva"><svg aria-hidden="true" focusable="false"><use href="#i-externo"/></svg></a>
+      <button class="icono-btn" type="button" data-cerrar aria-label="Cerrar chat"><svg aria-hidden="true" focusable="false"><use href="#i-cerrar"/></svg></button>
+    </div>
+    <div class="susana__marco">
+      <p class="susana__cargando">Cargando a Susana…</p>
+      <iframe title="Chat con Susana" data-src="https://chatbot-susana-aim-tika.ai.studio/?mode=chat" allow="clipboard-write; microphone" referrerpolicy="strict-origin-when-cross-origin" loading="lazy"></iframe>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

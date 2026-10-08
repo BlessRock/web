@@ -1,0 +1,442 @@
+/* =====================================================================
+   AImátika · Panel del diagnóstico digital
+   ---------------------------------------------------------------------
+   Va DESPUÉS de estilos.css: usa sus mismos colores, letra, botones
+   (.btn), campos (.campo) y bordes. Aquí solo está lo propio del panel.
+
+   En WordPress + Elementor: pegar en Apariencia > Personalizar >
+   CSS adicional, o cargar el archivo en todas las páginas.
+
+   ÍNDICE
+   1. Capa y fondo oscuro
+   2. Panel (entra desde la derecha)
+   3. Cabecera y cuerpo
+   4. Inicio: los dos caminos
+   5. Preguntas
+   6. Formularios
+   7. Resultado
+   8. Contacto enviado
+   9. Celular
+  10. Movimiento reducido
+   ===================================================================== */
+
+.diag {
+  --diag-pad: clamp(20px, 4vw, 40px);
+  --diag-entrada: .46s;          /* abrir: un poco más lento, se siente "deslizar" */
+  --diag-salida: .26s;           /* cerrar: más rápido (igual que DURACION_CIERRE en diagnostico.js) */
+  position: fixed;
+  inset: 0;
+  z-index: 90;                   /* encima del menú (50) y de Susana (60) */
+}
+.diag[hidden], .diag [hidden] { display: none !important; }   /* "hidden" siempre gana (ej: la flecha de volver) */
+
+
+/* ---------- 1. Fondo oscuro detrás del panel ---------- */
+.diag__fondo {
+  position: absolute;
+  inset: 0;
+  background: rgba(2, 1, 2, .64);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  transition: opacity var(--diag-salida) var(--ease-out);
+}
+.diag.is-open .diag__fondo { opacity: 1; transition-duration: .36s; }
+
+
+/* ---------- 2. Panel ---------- */
+.diag__panel {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: min(600px, 100%);
+  background: var(--superficie);
+  box-shadow: -1px 0 0 var(--linea), -32px 0 80px -24px rgba(1, 18, 56, .9);
+  isolation: isolate;
+  transform: translate3d(100%, 0, 0);
+  transition: transform var(--diag-salida) var(--ease-cajon);
+  will-change: transform;
+}
+/* Luz Aurora suave arriba a la derecha (igual que el menú del celular) */
+.diag__panel::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 420px;
+  z-index: -1;
+  background: radial-gradient(90% 100% at 100% 0%, rgba(2, 108, 154, .32), transparent 65%);
+  pointer-events: none;
+}
+.diag.is-open .diag__panel { transform: none; transition-duration: var(--diag-entrada); }
+.diag__panel:focus { outline: none; }
+
+
+/* ---------- 3. Cabecera y cuerpo ---------- */
+.diag__cabecera {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+  min-height: 64px;
+  padding: max(10px, env(safe-area-inset-top)) 10px 10px var(--diag-pad);
+  border-bottom: 1px solid var(--linea);
+}
+.diag__atras { margin-left: -12px; }
+.diag__atras svg { transform: rotate(180deg); }
+.diag__nombre { flex: 1; min-width: 0; font-size: .9375rem; font-weight: 700; letter-spacing: -.01em; }
+
+.diag__cuerpo {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: calc(var(--diag-pad) * .9) var(--diag-pad) 0;
+  scrollbar-color: rgba(255, 255, 255, .22) transparent;
+}
+.diag__vista { padding-bottom: max(40px, calc(env(safe-area-inset-bottom) + 24px)); }
+.diag__vista.is-entrando { animation: diag-entra .34s var(--ease-out) both; }
+@keyframes diag-entra {
+  from { opacity: 0; transform: translate3d(0, 10px, 0); filter: blur(3px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+
+.diag__titulo {
+  display: block;
+  width: 100%;
+  padding: 0;
+  font-size: clamp(1.6rem, 1.2rem + 1.3vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+.diag__titulo:focus { outline: none; }
+.diag__intro { max-width: 46ch; margin-top: 12px; color: var(--texto-2); }
+
+
+/* ---------- 4. Inicio: los dos caminos ---------- */
+.diag__caminos { display: grid; gap: 12px; margin-top: 32px; }
+.diag__camino {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  width: 100%;
+  padding: 22px 20px;
+  border: 0;
+  border-radius: var(--r-panel);
+  background: rgba(255, 255, 255, .04);
+  box-shadow: inset 0 0 0 1px var(--linea);
+  color: var(--texto);
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition: transform .16s var(--ease-out), box-shadow .2s ease, background-color .2s ease;
+}
+/* El primer camino (hacerlo yo mismo) va con el degradado Aurora */
+.diag__camino:first-child {
+  background: linear-gradient(135deg, rgba(2, 108, 154, .38), rgba(1, 18, 56, .5));
+  box-shadow: inset 0 0 0 1px rgba(2, 145, 185, .5);
+}
+.diag__camino:active { transform: scale(.985); }
+.diag__camino-icono {
+  display: grid;
+  place-items: center;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, var(--turquesa), var(--azul) 55%, var(--e-global-color-aurora1));
+}
+.diag__camino-icono svg { width: 22px; height: 22px; fill: var(--blanco); }
+.diag__camino-texto { display: grid; gap: 4px; }
+.diag__camino-texto strong { font-size: 1.0625rem; font-weight: 700; line-height: 1.25; letter-spacing: -.015em; }
+.diag__camino-texto span { font-size: .9375rem; line-height: 1.45; color: var(--texto-2); }
+.diag__camino-flecha { width: 20px; height: 20px; fill: currentColor; transition: transform .25s var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .diag__camino:hover { background-color: rgba(2, 145, 185, .1); box-shadow: inset 0 0 0 1.5px var(--turquesa); }
+  .diag__camino:hover .diag__camino-flecha { transform: translateX(4px); }
+}
+
+
+/* ---------- 5. Preguntas ---------- */
+.diag__progreso { margin-bottom: 28px; }
+.diag__progreso-fila {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: .8125rem;
+  color: var(--texto-3);
+  font-variant-numeric: tabular-nums;
+}
+.diag__progreso-fila span:first-child { font-weight: 600; color: var(--texto-2); }
+.diag__barra { height: 3px; border-radius: 3px; background: rgba(255, 255, 255, .1); overflow: hidden; }
+.diag__barra span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--azul), var(--turquesa));
+  transform: scaleX(.03);
+  transform-origin: left center;
+  transition: transform .45s var(--ease-out);
+}
+
+.diag__pregunta { min-width: 0; margin: 0; padding: 0; border: 0; }
+.diag__pregunta.is-entrando { animation: diag-entra .3s var(--ease-out) both; }
+.diag__ayuda { margin: 10px 0 22px; font-size: .9375rem; color: var(--texto-2); }
+
+.diag__opciones { display: grid; gap: 8px; }
+@media (min-width: 560px) {
+  .diag__opciones--varias { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.diag__opcion {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 56px;
+  padding: 14px 16px;
+  border-radius: var(--r-control);
+  background: rgba(255, 255, 255, .04);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .2);
+  font-size: 1rem;
+  line-height: 1.35;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+  transition: transform .16s var(--ease-out), box-shadow .2s ease, background-color .2s ease;
+}
+.diag__opcion:active { transform: scale(.985); }
+/* La casilla real queda invisible pero sigue funcionando con el teclado */
+.diag__opcion input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.diag__opcion:has(input:focus-visible) { outline: 2px solid var(--turquesa); outline-offset: 2px; }
+.diag__opcion:has(input:checked) { background: rgba(2, 145, 185, .14); box-shadow: inset 0 0 0 1.5px var(--turquesa); }
+@media (hover: hover) and (pointer: fine) {
+  .diag__opcion:hover { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .42); }
+  .diag__opcion:has(input:checked):hover { box-shadow: inset 0 0 0 1.5px var(--turquesa); }
+}
+
+/* Marca: círculo (una opción) o cuadrito (varias) */
+.diag__marca {
+  flex: none;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .45);
+  transition: box-shadow .18s var(--ease-out), background-color .18s ease;
+}
+.diag__opcion input:checked + .diag__marca { background: var(--blanco); box-shadow: inset 0 0 0 6px var(--turquesa); }
+.diag__opcion input[type="checkbox"] + .diag__marca { border-radius: 5px; }
+.diag__opcion input[type="checkbox"]:checked + .diag__marca {
+  background: var(--turquesa) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='%23fff' d='M229.66,77.66l-128,128a8,8,0,0,1-11.32,0l-56-56a8,8,0,0,1,11.32-11.32L96,188.69,218.34,66.34a8,8,0,0,1,11.32,11.32Z'/%3E%3C/svg%3E") center / 14px no-repeat;
+  box-shadow: none;
+}
+
+.diag__error { margin-top: 14px; font-size: .875rem; color: var(--error); }
+.diag__error:empty { display: none; }
+
+/* Botones de abajo: quedan pegados al borde inferior mientras bajas */
+.diag__navegacion {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 24px calc(var(--diag-pad) * -1) calc(max(40px, calc(env(safe-area-inset-bottom) + 24px)) * -1);
+  padding: 20px var(--diag-pad) max(20px, env(safe-area-inset-bottom));
+  background: linear-gradient(rgba(12, 20, 34, 0), var(--superficie) 28%);
+}
+.diag__navegacion .btn--accion { min-width: 180px; }
+
+
+/* ---------- 6. Formularios (usa .campo de estilos.css) ---------- */
+.diag__form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 14px;
+  margin-top: 28px;
+}
+.diag__form .campo--full,
+.diag__form .formulario__estado,
+.diag__form-acciones { grid-column: 1 / -1; }
+.diag__form-acciones { margin-top: 4px; }
+.diag__form-acciones .btn { width: 100%; }
+.diag__form .formulario__estado a { color: var(--texto); font-weight: 700; }
+
+.diag__preferencia { margin: 0; padding: 0; border: 0; min-width: 0; }
+.diag__preferencia legend { margin-bottom: 8px; padding: 0; font-size: .875rem; font-weight: 600; }
+.diag__chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.diag__chip { position: relative; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.diag__chip input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.diag__chip span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: var(--r-control);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16);
+  color: var(--texto-3);
+  font-size: .9375rem;
+  font-weight: 600;
+  transition: box-shadow .2s ease, background-color .2s ease, color .2s ease, transform .16s var(--ease-out);
+}
+.diag__chip:active span { transform: scale(.97); }
+.diag__chip svg { width: 18px; height: 18px; fill: currentColor; }
+.diag__chip input:checked + span { background: rgba(2, 145, 185, .26); box-shadow: inset 0 0 0 2px var(--turquesa); color: var(--texto); }
+.diag__chip input:focus-visible + span { outline: 2px solid var(--turquesa); outline-offset: 2px; }
+
+
+/* ---------- 7. Resultado ---------- */
+.diag__aviso {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: var(--r-control);
+  background: rgba(255, 255, 255, .06);
+  font-size: .875rem;
+  line-height: 1.5;
+  color: var(--texto-2);
+}
+.diag__aviso[data-tipo="ok"] { box-shadow: inset 0 0 0 1px rgba(212, 248, 10, .55); }
+.diag__aviso[data-tipo="error"] { box-shadow: inset 0 0 0 1px var(--error); }
+
+.diag__puntaje {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin-top: 24px;
+  padding: 24px;
+  border-radius: var(--r-panel);
+  background: rgba(255, 255, 255, .04);
+  box-shadow: inset 0 0 0 1px var(--linea);
+}
+.diag__puntaje-num {
+  flex: none;
+  font-size: clamp(3.5rem, 3rem + 2vw, 4.5rem);
+  font-weight: 800;
+  line-height: .9;
+  letter-spacing: -.04em;
+  font-variant-numeric: tabular-nums;
+}
+.diag__puntaje-num small { margin-left: 2px; font-size: 1.125rem; font-weight: 600; letter-spacing: 0; color: var(--texto-3); }
+.diag__nivel { font-size: 1.125rem; font-weight: 700; color: var(--turquesa); }
+.diag__nivel-texto { margin-top: 4px; font-size: .9375rem; line-height: 1.45; color: var(--texto-2); }
+
+.diag__oportunidad {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin-top: 12px;
+  padding: 24px;
+  border-radius: var(--r-panel);
+  background: linear-gradient(135deg, var(--e-global-color-aurora1) 0%, var(--e-global-color-aurora2) 55%, var(--e-global-color-aurora3) 100%);
+}
+.diag__oportunidad::after {        /* ruido fino de la Línea Aurora */
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: var(--ruido);
+  opacity: .08;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+.diag__oportunidad-etiqueta { font-size: .8125rem; font-weight: 600; color: rgba(255, 255, 255, .78); }
+.diag__oportunidad h3 { margin: 4px 0 8px; font-size: 1.5rem; font-weight: 800; line-height: 1.15; letter-spacing: -.03em; }
+.diag__oportunidad p:last-child { color: rgba(255, 255, 255, .9); font-size: .9375rem; line-height: 1.55; }
+
+.diag__subtitulo { margin: 36px 0 12px; font-size: 1.125rem; font-weight: 700; letter-spacing: -.02em; }
+
+.diag__areas { list-style: none; }
+.diag__areas li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 0; font-weight: 600; }
+.diag__areas li + li { border-top: 1px solid var(--linea); }
+.diag__prioridad { flex: none; padding: 5px 10px; border-radius: var(--r-control); font-size: .75rem; font-weight: 700; white-space: nowrap; }
+.diag__prioridad--alta { background: var(--lima); color: var(--negro); }
+.diag__prioridad--media { background: rgba(2, 145, 185, .2); color: #8AD8EE; }
+.diag__prioridad--baja { background: rgba(255, 255, 255, .08); color: var(--texto-2); }
+
+.diag__hallazgos { display: grid; gap: 10px; list-style: none; }
+.diag__hallazgos li { display: flex; gap: 12px; color: var(--texto-2); line-height: 1.5; }
+.diag__hallazgos svg { flex: none; width: 18px; height: 18px; margin-top: 3px; fill: var(--turquesa); }
+
+.diag__recomendaciones { display: grid; gap: 10px; list-style: none; counter-reset: rec; }
+.diag__recomendaciones li { padding: 18px; border-radius: var(--r-control); box-shadow: inset 0 0 0 1px var(--linea); counter-increment: rec; }
+.diag__recomendaciones h4 { font-size: 1rem; font-weight: 700; }
+.diag__recomendaciones h4::before { content: counter(rec) ". "; color: var(--turquesa); }
+.diag__recomendaciones p { margin-top: 6px; font-size: .9375rem; line-height: 1.5; color: var(--texto-2); }
+
+.diag__cierre {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  margin-top: 36px;
+  padding: 28px 24px;
+  border-radius: var(--r-panel);
+  background: var(--negro);
+  box-shadow: inset 0 0 0 1px var(--linea);
+}
+.diag__cierre::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(110% 90% at 0% 100%, rgba(2, 108, 154, .42), transparent 62%);
+}
+.diag__cierre h3 { font-size: 1.375rem; font-weight: 800; line-height: 1.15; letter-spacing: -.03em; text-wrap: balance; }
+.diag__cierre p { margin: 8px 0 22px; color: var(--texto-2); }
+
+.diag__reiniciar {
+  display: block;
+  min-height: 44px;
+  margin: 16px auto 0;
+  padding: 0 12px;
+  border: 0;
+  background: none;
+  color: var(--texto-3);
+  font-size: .875rem;
+  text-decoration: underline;
+  text-underline-offset: .22em;
+  cursor: pointer;
+}
+@media (hover: hover) and (pointer: fine) { .diag__reiniciar:hover { color: var(--texto); } }
+
+
+/* ---------- 8. Contacto enviado ---------- */
+.diag__vista--listo { padding-top: 24px; }
+.diag__listo-icono {
+  display: grid;
+  place-items: center;
+  width: 64px; height: 64px;
+  margin-bottom: 24px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, var(--turquesa), var(--azul) 55%, var(--e-global-color-aurora1));
+}
+.diag__listo-icono svg { width: 30px; height: 30px; fill: var(--blanco); }
+.diag__vista--listo .btn { margin-top: 28px; }
+.diag__vista--listo.is-entrando .diag__listo-icono { animation: diag-check .5s var(--ease-out) .08s both; }
+@keyframes diag-check { from { opacity: 0; transform: scale(.85); } to { opacity: 1; transform: none; } }
+
+
+/* ---------- 9. Celular: el panel ocupa toda la pantalla ---------- */
+@media (max-width: 640px) {
+  .diag__panel { width: 100%; box-shadow: none; }
+  .diag__form { grid-template-columns: 1fr; }
+  .diag__camino { gap: 14px; padding: 18px 16px; }
+  .diag__camino-icono { width: 42px; height: 42px; }
+  .diag__camino-flecha { display: none; }
+  .diag__navegacion .btn { flex: 1 1 0; min-width: 0; }
+  .diag__navegacion .btn--accion { flex-grow: 2; }
+  .diag__puntaje { align-items: flex-start; flex-direction: column; gap: 14px; padding: 20px; }
+  .diag__cierre .btn { width: 100%; }
+}
+
+
+/* ---------- 10. Movimiento reducido: solo desvanecer, sin desplazamientos ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .diag__panel { transform: none; opacity: 0; transition: opacity .2s ease; }
+  .diag.is-open .diag__panel { opacity: 1; }
+  .diag__vista.is-entrando, .diag__pregunta.is-entrando, .diag__listo-icono { animation: none !important; }
+  .diag__barra span { transition: none; }
+}
